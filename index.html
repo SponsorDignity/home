@@ -1,22 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Sponsor Dignity</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponsor Dignity</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+
+:root {
+  --teal:#2a9d7f;
+  --teal-dark:#1e7a62;
+  --white:#fff;
+  --text:#1a2e28;
+}
+
+body {
+  font-family:'Source Sans 3',sans-serif;
+  background:#ffffff;
+  color:var(--text);
+}
+
+/* HERO CARD (Carrd style) */
+.hero-wrapper {
+  max-width:1100px;
+  margin:3rem auto 2rem;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+/* IMAGE */
+.hero-img {
+  width:100%;
+  height:380px;
+  object-fit:cover;
+  object-position:center 35%;
+  display:block;
+}
+
+/* BANNER */
+.hero-banner {
+  background:var(--teal);
+  padding:2rem 2.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+
+.hero-text h1 {
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;
+  color:white;
+  line-height:1.1;
+}
+
+.hero-text p {
+  margin-top:.6rem;
+  font-size:.75rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+}
+
+/* BUTTONS */
+.hero-buttons {
+  display:flex;
+  gap:.8rem;
+  flex-wrap:wrap;
+}
+
+.btn {
+  border:none;
+  padding:.65rem 1.2rem;
+  background:rgba(255,255,255,.18);
+  border-radius:999px;
+  color:white;
+  font-weight:600;
+  font-size:.9rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  transition:background .2s, transform .15s;
+}
+
+.btn:hover {
+  background:rgba(255,255,255,.3);
+  transform:translateY(-1px);
+}
+
+.btn svg { width:16px; height:16px; }
+
+/* SECTIONS */
+section {
+  max-width:850px;
+  margin:3rem auto;
+  padding:0 1.5rem;
+  display:none;
+}
+
+section.active { display:block; }
+
+h2 {
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;
+  margin-bottom:1.2rem;
+}
+
+p { line-height:1.8; margin-bottom:1.2rem; }
+
+@media(max-width:700px){
+  .hero-banner{padding:1.6rem}
+  .hero-text h1{font-size:2.2rem}
+  .hero-img{height:260px}
+}
+</style>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to Sponsor Dignity</h1>
-        <img src="images/dignity.jpg" alt="Dignity Image">
-    </header>
-    <main>
-        <h2>About Us</h2>
-        <p>Your text about the mission and vision of the website.</p>
-    </main>
-    <footer>
-        <p>Contact us at <a href="contact.html">Contact Page</a></p>
-    </footer>
+
+<!-- HERO -->
+<div class="hero-wrapper">
+  <img
+    src="images/dignity.jpg"
+    class="hero-img"
+    alt="Two elderly people sitting together outdoors in a peaceful garden"
+  >
+
+  <div class="hero-banner">
+    <div class="hero-text">
+      <h1>Sponsor Dignity</h1>
+      <p>Support an elderly person directly<br>Restore dignity through human connection</p>
+    </div>
+
+    <div class="hero-buttons">
+      <button class="btn" onclick="showSection('sponsor')">Sponsor Now</button>
+      <button class="btn" onclick="showSection('about')">About Us</button>
+      <button class="btn" onclick="showSection('contact')">Email</button>
+      <button class="btn" onclick="showSection('donate')">Donate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>Restoring dignity, one connection at a time</h2>
+  <p>Sponsor Dignity connects supporters directly with elderly individuals who need care, companionship, and practical support.</p>
+</section>
+
+<!-- SPONSOR -->
+<section id="sponsor">
+  <h2>Become a Sponsor</h2>
+  <p>Choose your level of support and help restore dignity.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Get in Touch</h2>
+  <p>Questions or referrals? We’d love to hear from you.</p>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <h2>Make a Donation</h2>
+  <p>100% of funds go directly to people in need.</p>
+</section>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el){
+    el.classList.add('active');
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+</script>
+
 </body>
 </html>
