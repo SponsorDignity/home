@@ -4,11 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sponsor Dignity</title>
-
-https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600&display=swap
-
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
+* { box-sizing: border-box; margin:0; padding:0; }
 
 :root {
   --teal:#2a9d7f;
@@ -18,35 +16,20 @@ https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600&family=Playfair+Dis
 }
 
 html, body {
+  height:100%;
   font-family:'Source Sans 3',sans-serif;
   background:#f4f7f5;
   color:var(--text);
 }
 
-/* ─────────────────────────────────────────────
-   OUTER WRAPPER (restored Carrd-style card)
-───────────────────────────────────────────── */
-.hero-shell {
-  max-width:1200px;
-  margin:3rem auto 2.5rem;
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 22px 55px rgba(0,0,0,0.18);
-  background:#000;
-  outline:1px solid rgba(255,255,255,0.08);
-  outline-offset:-1px;
-}
-
-/* ─────────────────────────────────────────────
-   HERO (bigger, not full screen)
-───────────────────────────────────────────── */
+/* ── 1. HERO fills viewport edge to edge ── */
 .hero-wrapper {
   width:100%;
-  height:72vh;
-  min-height:620px;
-  max-height:860px;
+  height:100vh;
+  min-height:600px;
   position:relative;
   overflow:hidden;
+  /* no border-radius, no max-width — full bleed */
 }
 
 .hero-img {
@@ -57,7 +40,7 @@ html, body {
   display:block;
 }
 
-/* Overlay gradients */
+/* ── 2. Stronger base overlay + even stronger when open ── */
 .hero-overlay {
   position:absolute;
   inset:0;
@@ -66,7 +49,7 @@ html, body {
     rgba(0,0,0,0.28) 45%,
     rgba(0,0,0,0.70) 100%
   );
-  transition:background .4s ease;
+  transition:background 0.4s ease;
   pointer-events:none;
   z-index:1;
 }
@@ -79,7 +62,7 @@ html, body {
   );
 }
 
-/* Banner */
+/* ── BANNER ── */
 .hero-banner {
   position:absolute;
   bottom:0; left:0; right:0;
@@ -93,12 +76,15 @@ html, body {
   background:linear-gradient(to top, rgba(22,90,68,0.82) 0%, transparent 100%);
 }
 
+/* ── 5. Bolder, whiter title ── */
 .hero-text h1 {
   font-family:'Zilla Slab',serif;
-  font-size:clamp(2.8rem,5.5vw,4.2rem);
-  color:white;
+  font-weight:600;
+  font-size:clamp(2.8rem, 5.5vw, 4.2rem);
+  color:#ffffff;
   line-height:1.05;
-  text-shadow:0 2px 16px rgba(0,0,0,.5),0 0 40px rgba(0,0,0,.3);
+  letter-spacing:-0.01em;
+  text-shadow:0 2px 16px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.3);
 }
 
 .hero-text p {
@@ -106,55 +92,81 @@ html, body {
   font-size:.74rem;
   letter-spacing:.17em;
   text-transform:uppercase;
-  color:rgba(255,255,255,.95);
+  color:rgba(255,255,255,0.95);
+  font-weight:400;
+  text-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
 
-/* Buttons */
+/* BUTTONS */
 .hero-buttons {
   display:flex;
   gap:.75rem;
   flex-wrap:wrap;
+  justify-content:flex-end;
 }
 
 .btn {
-  border:1.5px solid rgba(255,255,255,.55);
+  border:1.5px solid rgba(255,255,255,0.55);
   padding:.62rem 1.2rem;
-  background:rgba(255,255,255,.15);
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   border-radius:999px;
   color:white;
   font-weight:600;
   font-size:.88rem;
   cursor:pointer;
   display:flex;
-  gap:.45rem;
   align-items:center;
+  gap:.45rem;
+  transition:background .2s, border-color .2s, transform .15s;
+  white-space:nowrap;
 }
 
-.btn:hover { background:rgba(255,255,255,.28); }
+.btn:hover {
+  background:rgba(255,255,255,0.28);
+  border-color:rgba(255,255,255,0.9);
+  transform:translateY(-1px);
+}
 
 .btn.active-btn {
+  background:rgba(255,255,255,0.28);
   border-color:white;
-  background:rgba(255,255,255,.28);
 }
 
-/* Close button */
+.btn svg {
+  width:15px; height:15px;
+  stroke:white; fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex-shrink:0;
+}
+
+/* CLOSE BUTTON */
 .close-btn {
   position:absolute;
   top:1.4rem; right:1.8rem;
   z-index:10;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.5);
   border-radius:999px;
   color:white;
-  padding:.4rem 1rem;
   font-size:.78rem;
+  font-weight:600;
+  padding:.4rem 1rem;
   cursor:pointer;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  transition:background .2s;
   display:none;
+  letter-spacing:.06em;
 }
 
+.close-btn:hover { background:rgba(255,255,255,0.28); }
 .close-btn.visible { display:block; }
 
-/* Section overlays */
+/* ── 4. SECTION OVERLAYS — white scrollbar track, no gradient bg ── */
 .section-overlay {
   position:absolute;
   inset:0;
@@ -162,95 +174,507 @@ html, body {
   display:none;
   align-items:flex-start;
   justify-content:center;
+  /* top padding leaves room, bottom padding clears banner */
   padding:3.2rem 3.5rem 9rem;
   overflow-y:auto;
+  scrollbar-color: rgba(255,255,255,0.4) rgba(255,255,255,0.12);
+  scrollbar-width:thin;
 }
+
+.section-overlay::-webkit-scrollbar { width:6px; }
+.section-overlay::-webkit-scrollbar-track { background:rgba(255,255,255,0.12); border-radius:3px; }
+.section-overlay::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.4); border-radius:3px; }
 
 .section-overlay.active { display:flex; }
 
 .section-content {
   max-width:700px;
+  width:100%;
   color:white;
+  animation:fadeUp 0.38s ease both;
 }
 
-/* Mobile */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.section-tag {
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+  font-weight:600;
+  margin-bottom:.9rem;
+}
+
+/* ── 2. Whiter, more readable headings & body ── */
+.section-content h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem, 3.5vw, 2.6rem);
+  color:#ffffff;
+  line-height:1.2;
+  margin-bottom:1rem;
+  text-shadow:0 2px 12px rgba(0,0,0,0.5);
+}
+
+.section-content h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;
+  color:#ffffff;
+  margin:1.5rem 0 .5rem;
+  text-shadow:0 1px 8px rgba(0,0,0,0.4);
+}
+
+.section-content > .section-fields p,
+.section-content > p {
+  font-size:1rem;
+  line-height:1.82;
+  color:rgba(255,255,255,0.95);
+  margin-bottom:1rem;
+  text-shadow:0 1px 6px rgba(0,0,0,0.4);
+}
+
+/* ── 3. Cards/inputs — blurred glass ── */
+.tier-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.9rem;
+  margin:1.4rem 0;
+}
+
+.tier-card {
+  border:1.5px solid rgba(255,255,255,0.3);
+  border-radius:12px;
+  padding:1.1rem 1rem;
+  text-align:center;
+  cursor:pointer;
+  background:rgba(0,0,0,0.28);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  transition:background .2s, border-color .2s, box-shadow .2s;
+}
+
+.tier-card:hover {
+  background:rgba(0,0,0,0.38);
+  border-color:rgba(255,255,255,0.7);
+}
+
+/* ── 7. Bold selected border ── */
+.tier-card.selected {
+  background:rgba(255,255,255,0.18);
+  border:2.5px solid #ffffff;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.25), inset 0 0 20px rgba(255,255,255,0.06);
+}
+
+.tier-card .amount {
+  font-family:'Playfair Display',serif;
+  font-size:1.9rem;
+  color:white;
+  display:block;
+  text-shadow:0 1px 8px rgba(0,0,0,0.4);
+}
+
+.tier-card .tier-name {
+  font-size:.75rem;
+  color:rgba(255,255,255,0.75);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin:.25rem 0;
+  display:block;
+}
+
+.tier-card .tier-desc {
+  font-size:.78rem;
+  color:rgba(255,255,255,0.7);
+  line-height:1.5;
+  margin-top:.5rem;
+}
+
+.tier-card .tier-freq {
+  font-size:.68rem;
+  color:rgba(255,255,255,.5);
+  margin-top:.45rem;
+  display:block;
+}
+
+/* FORMS */
+.form-group { margin-bottom:1rem; }
+
+.form-group label {
+  display:block;
+  font-size:.73rem;
+  font-weight:600;
+  color:rgba(255,255,255,0.8);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  margin-bottom:.35rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width:100%;
+  padding:.65rem 1rem;
+  border:1.5px solid rgba(255,255,255,0.3);
+  border-radius:8px;
+  /* ── 3. blurred glass inputs ── */
+  background:rgba(0,0,0,0.28);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  color:white;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:.95rem;
+  outline:none;
+  transition:border-color .2s, background .2s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color:rgba(255,255,255,0.38); }
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color:rgba(255,255,255,0.8);
+  background:rgba(0,0,0,0.38);
+}
+
+.form-group textarea { min-height:95px; resize:vertical; }
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+
+.submit-btn {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.74rem 1.9rem;
+  background:white;
+  color:var(--teal-dark);
+  border:none;
+  border-radius:999px;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:.95rem;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:.4rem;
+  transition:background .2s, transform .15s;
+}
+
+.submit-btn:hover { background:rgba(255,255,255,0.88); transform:translateY(-1px); }
+
+.submit-btn svg {
+  width:14px; height:14px;
+  stroke:var(--teal-dark); fill:none;
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* DONATE PILLS */
+.amount-pills { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+
+.pill {
+  padding:.5rem 1.2rem;
+  border:1.5px solid rgba(255,255,255,0.35);
+  border-radius:999px;
+  color:white;
+  background:rgba(0,0,0,0.28);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  font-weight:600;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:background .2s, border-color .2s, box-shadow .2s;
+}
+
+.pill:hover {
+  background:rgba(0,0,0,0.38);
+  border-color:rgba(255,255,255,0.75);
+}
+
+/* ── 7. Bold selected border on pills too ── */
+.pill.selected {
+  background:rgba(255,255,255,0.18);
+  border:2.5px solid #ffffff;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.2);
+}
+
+/* ── 6. SUCCESS replaces entire form content ── */
+.section-fields { }
+.section-fields.hidden { display:none; }
+
+.success-box {
+  display:none;
+  padding:2.5rem 2rem;
+  text-align:center;
+  animation:fadeUp 0.4s ease both;
+}
+
+.success-box.show { display:block; }
+
+.success-icon {
+  width:56px; height:56px;
+  background:rgba(255,255,255,0.15);
+  border:2px solid rgba(255,255,255,0.5);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 1.4rem;
+}
+
+.success-icon svg {
+  width:26px; height:26px;
+  stroke:white; fill:none;
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.success-box h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:white;
+  margin-bottom:.7rem;
+  text-shadow:0 2px 10px rgba(0,0,0,0.3);
+}
+
+.success-box p {
+  font-size:1rem;
+  color:rgba(255,255,255,0.88);
+  line-height:1.7;
+  max-width:440px;
+  margin:0 auto;
+}
+
 @media(max-width:720px){
-  .hero-shell {
-    margin:1.4rem auto 2rem;
-    border-radius:16px;
-  }
-
-  .hero-wrapper {
-    height:64vh;
-    min-height:520px;
-  }
-
-  .hero-banner {
-    flex-direction:column;
-    align-items:flex-start;
-    padding:1.4rem 1.6rem 1.8rem;
-  }
-
-  .btn {
-    flex:1;
-    justify-content:center;
-  }
+  .hero-banner { flex-direction:column; align-items:flex-start; padding:1.4rem 1.6rem 1.8rem; }
+  .hero-buttons { width:100%; }
+  .btn { flex:1; justify-content:center; min-width:0; }
+  .tier-grid { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .section-overlay { padding:2.5rem 1.4rem 8rem; }
 }
 </style>
 </head>
-
 <body>
-
-<!-- ✅ Restored outer wrapper -->
-<div class="hero-shell">
 
 <div class="hero-wrapper" id="heroWrapper">
 
-  images/dignity.jpg
+  <img src="images/dignity.jpg" class="hero-img" alt="Two elderly people sitting together outdoors">
   <div class="hero-overlay"></div>
-
   <button class="close-btn" id="closeBtn" onclick="closeSection()">✕ Close</button>
 
   <!-- ABOUT -->
   <div class="section-overlay" id="about">
     <div class="section-content">
+      <div class="section-tag">Who we are</div>
       <h2>Restoring dignity, one connection at a time</h2>
-      <p>Sponsor Dignity connects elderly people with compassionate sponsors through human connection and direct support.</p>
+      <p>Sponsor Dignity is a human-centered nonprofit that connects elderly people in need with compassionate donors who wish to give back by directly connecting to a vulnerable elder in a meaningful way. We offer dignity, warmth, and basic support to aging individuals who have been left behind by broken systems — through direct sponsorship, human connection, and community-powered care. We believe that every wrinkle tells a story, and every elder deserves to be seen, heard, and honored.</p>
+      <h3>How we came about</h3>
+      <p>Our founder was visiting abroad one year when they saw an elderly man quietly going through the trash at night. He wasn't homeless, not in the way we usually think of it. He looked like someone's grandfather — neatly dressed, still holding onto pride, careful not to be seen. But he was seen. And something about that moment never left.</p>
+      <p>It became clear that people like him had lived through hardship without complaint, worked their entire lives, raised families — and now, in their final years, were quietly struggling, unseen, too proud to reach out. In a world with a rapidly ageing population and complex challenges, the vulnerable can be left behind too easily. Sponsor Dignity arose with a mission to bridge that gap, restore dignity, and create human connection. One story, one elder, one life at a time.</p>
     </div>
   </div>
 
-  <!-- BANNER -->
+  <!-- SPONSOR -->
+  <div class="section-overlay" id="sponsor">
+    <div class="section-content">
+      <div id="sponsor-fields" class="section-fields">
+        <div class="section-tag">Become a sponsor</div>
+        <h2>Choose your level of support</h2>
+        <p>Select a tier and fill in your details. We'll match you with an elderly person and introduce you within 5 days.</p>
+        <div class="tier-grid">
+          <div class="tier-card selected" onclick="selectTier(this)">
+            <span class="amount">$15</span>
+            <span class="tier-name">Companion</span>
+            <div class="tier-desc">Weekly calls &amp; a monthly care package</div>
+            <span class="tier-freq">/ month</span>
+          </div>
+          <div class="tier-card" onclick="selectTier(this)">
+            <span class="amount">$30</span>
+            <span class="tier-name">Guardian</span>
+            <div class="tier-desc">Meals, medication &amp; regular check-ins</div>
+            <span class="tier-freq">/ month</span>
+          </div>
+          <div class="tier-card" onclick="selectTier(this)">
+            <span class="amount">$60</span>
+            <span class="tier-name">Champion</span>
+            <div class="tier-desc">Full support: housing, medical &amp; daily care</div>
+            <span class="tier-freq">/ month</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full name</label>
+            <input type="text" id="s-name" placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="s-email" placeholder="jane@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Any preferences? (optional)</label>
+          <textarea id="s-notes" placeholder="e.g. I'd love to be matched with someone who enjoys gardening..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm('s-name','s-email','sponsor-fields','sponsor-success')">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Start My Sponsorship
+        </button>
+      </div>
+      <div class="success-box" id="sponsor-success">
+        <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>You're making a difference!</h3>
+        <p>Thank you for signing up. We'll be in touch within 5 days to introduce you to your match.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section-overlay" id="contact">
+    <div class="section-content">
+      <div id="contact-fields" class="section-fields">
+        <div class="section-tag">Get in touch</div>
+        <h2>We'd love to hear from you</h2>
+        <p>Questions about sponsorship, referring an elderly person, or interested in volunteering? Drop us a message below.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" id="c-name" placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="c-email" placeholder="jane@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="c-msg" placeholder="What's on your mind?"></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm('c-name','c-email','contact-fields','contact-success')">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+      </div>
+      <div class="success-box" id="contact-success">
+        <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Message sent!</h3>
+        <p>Thank you for reaching out. We'll reply to you within 48 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DONATE -->
+  <div class="section-overlay" id="donate">
+    <div class="section-content">
+      <div id="donate-fields" class="section-fields">
+        <div class="section-tag">Make a donation</div>
+        <h2>Every dollar goes directly to a person in need</h2>
+        <p>100% of funds go to meals, medication, and companionship for elderly individuals who have been forgotten. No admin fees.</p>
+        <div class="amount-pills">
+          <button class="pill selected" onclick="selectPill(this)">$10</button>
+          <button class="pill" onclick="selectPill(this)">$25</button>
+          <button class="pill" onclick="selectPill(this)">$50</button>
+          <button class="pill" onclick="selectPill(this)">$100</button>
+        </div>
+        <div class="form-group" style="max-width:210px; margin-bottom:1.2rem;">
+          <label>Or enter amount</label>
+          <input type="text" id="custom-amt" placeholder="$ Other amount" oninput="clearPills()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" id="d-name" placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="d-email" placeholder="jane@example.com">
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitForm('d-name','d-email','donate-fields','donate-success')">
+          <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M15 9.354a4 4 0 1 0 0 5.292"/></svg>
+          Donate Now
+        </button>
+      </div>
+      <div class="success-box" id="donate-success">
+        <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Thank you for your generosity!</h3>
+        <p>Your donation will make a real and immediate difference. A receipt will be sent to your email.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER — always on top -->
   <div class="hero-banner">
     <div class="hero-text">
       <h1>Sponsor Dignity</h1>
       <p>Support an elderly person directly<br>Restore dignity through human connection</p>
     </div>
     <div class="hero-buttons">
-      <button class="btn" id="btn-about" onclick="showSection('about')">About Us</button>
-      <button class="btn" onclick="showSection('donate')">Donate</button>
+      <button class="btn" id="btn-sponsor" onclick="showSection('sponsor')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Sponsor Someone
+      </button>
+      <button class="btn" id="btn-about" onclick="showSection('about')">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        About Us
+      </button>
+      <button class="btn" id="btn-contact" onclick="showSection('contact')">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </button>
+      <button class="btn" id="btn-donate" onclick="showSection('donate')">
+        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M15 9.354a4 4 0 1 0 0 5.292"/></svg>
+        Donate
+      </button>
     </div>
   </div>
 
 </div>
-</div>
 
 <script>
 function showSection(id) {
-  document.querySelectorAll('.section-overlay').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active-btn'));
-  const el=document.getElementById(id);
-  if(el){
+  document.querySelectorAll('.section-overlay').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.btn').forEach(function(b){ b.classList.remove('active-btn'); });
+  var el = document.getElementById(id);
+  if (el) {
     el.classList.add('active');
     document.getElementById('heroWrapper').classList.add('section-open');
     document.getElementById('closeBtn').classList.add('visible');
+    var btn = document.getElementById('btn-' + id);
+    if (btn) btn.classList.add('active-btn');
   }
 }
 
-function closeSection(){
-  document.querySelectorAll('.section-overlay').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active-btn'));
+function closeSection() {
+  document.querySelectorAll('.section-overlay').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.btn').forEach(function(b){ b.classList.remove('active-btn'); });
   document.getElementById('heroWrapper').classList.remove('section-open');
   document.getElementById('closeBtn').classList.remove('visible');
+}
+
+function selectTier(card) {
+  document.querySelectorAll('.tier-card').forEach(function(c){ c.classList.remove('selected'); });
+  card.classList.add('selected');
+}
+
+function selectPill(pill) {
+  document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('selected'); });
+  pill.classList.add('selected');
+  document.getElementById('custom-amt').value = '';
+}
+
+function clearPills() {
+  document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('selected'); });
+}
+
+// ── 6. Collapse fields, show success ──
+function submitForm(nameId, emailId, fieldsId, successId) {
+  var name = document.getElementById(nameId).value.trim();
+  var email = document.getElementById(emailId).value.trim();
+  if (!name || !email) { alert('Please fill in your name and email.'); return; }
+  document.getElementById(fieldsId).classList.add('hidden');
+  var box = document.getElementById(successId);
+  box.classList.add('show');
 }
 </script>
 
