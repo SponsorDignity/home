@@ -696,6 +696,40 @@ function submitForm(nameId, emailId, fieldsId, successId) {
   document.getElementById(successId).classList.add('show');
 }
 </script>
+<!-- EmailJS (safe, side‑effect free) -->
+<script src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"></script>
+
+<script>
+  /* Initialize EmailJS */
+  emailjs.init("9GIvnoUR9C4HzZ8b1"); // your Public Key
+
+  /*
+    Safe background email sender.
+    Does NOT affect UI or existing submit logic.
+  */
+  function sendEmailSafely(formType, nameId, emailId, messageId) {
+    try {
+      const name = document.getElementById(nameId)?.value || '';
+      const email = document.getElementById(emailId)?.value || '';
+      const message = document.getElementById(messageId)?.value || '';
+
+      if (!name || !email) return;
+
+      emailjs.send(
+        "service_lycq29q",      // your Gmail Service ID
+        "template_vjkkbb9",     // your Contact Us template
+        {
+          form_type: formType,
+          from_name: name,
+          from_email: email,
+          message: message
+        }
+      ).catch(err => console.error("EmailJS error:", err));
+    } catch (e) {
+      console.error("EmailJS exception:", e);
+    }
+  }
+</script>
 
 </body>
 </html>
