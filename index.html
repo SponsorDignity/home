@@ -730,6 +730,39 @@ function submitForm(nameId, emailId, fieldsId, successId) {
     }
   }
 </script>
+<script>
+/* =========================
+   Simple bot protection
+   ========================= */
 
+// Track page load time
+const pageLoadedAt = Date.now();
+
+// Create a hidden honeypot input
+document.addEventListener('DOMContentLoaded', () => {
+  const honeypot = document.createElement('input');
+  honeypot.type = 'text';
+  honeypot.name = 'company'; // common bot target
+  honeypot.id = 'company';
+  honeypot.tabIndex = -1;
+  honeypot.autocomplete = 'off';
+  honeypot.style.position = 'absolute';
+  honeypot.style.left = '-9999px';
+
+  document.body.appendChild(honeypot);
+});
+
+// Bot check helper
+function isBotSubmission() {
+  const honeypot = document.getElementById('company');
+  const timeSpent = Date.now() - pageLoadedAt;
+
+  // If hidden field filled OR form submitted too fast
+  return (
+    (honeypot && honeypot.value.trim() !== '') ||
+    timeSpent < 3000 // less than 3 seconds on page
+  );
+}
+</script>
 </body>
 </html>
