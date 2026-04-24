@@ -124,25 +124,23 @@ p { line-height:1.8; margin-bottom:1.2rem; }
 
 <body>
 
-<!-- HERO -->
-<div class="hero-wrapper">
-  <img
-    src="images/dignity.jpg"
-    class="hero-img"
-    alt="Two elderly people sitting together outdoors in a peaceful garden"
-  >
+<div class="hero">
+  <img src="images/dignity.jpg" alt="Elderly couple" class="hero-bg">
 
-  <div class="hero-banner">
-    <div class="hero-text">
-      <h1>Sponsor Dignity</h1>
-      <p>Support an elderly person directly<br>Restore dignity through human connection</p>
-    </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Sponsor Dignity</h1>
+    <p>
+      Support an elderly person directly<br>
+      Restore dignity through human connection
+    </p>
 
     <div class="hero-buttons">
-      <button class="btn" onclick="showSection('sponsor')">Sponsor Now</button>
-      <button class="btn" onclick="showSection('about')">About Us</button>
-      <button class="btn" onclick="showSection('contact')">Email</button>
-      <button class="btn" onclick="showSection('donate')">Donate</button>
+      <button class="btn primary" onclick="showSection('sponsor')">Sponsor Now</button>
+      <button class="btn ghost" onclick="showSection('about')">About Us</button>
+      <button class="btn ghost" onclick="showSection('contact')">Email</button>
+      <button class="btn ghost" onclick="showSection('donate')">Donate</button>
     </div>
   </div>
 </div>
