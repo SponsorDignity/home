@@ -615,35 +615,58 @@ html, body {
     </div>
   </div>
 
-  <!-- BANNER — always on top -->
-  <div class="hero-banner">
-    <div class="hero-text">
-      <h1>Sponsor Dignity</h1>
-      <p>Support an elderly person directly<br>Restore dignity through human connection</p>
-    </div>
-    <div class="hero-buttons">
-      <button class="btn" id="btn-sponsor" onclick="showSection('sponsor')">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Sponsor Someone
-      </button>
-      <button class="btn" id="btn-about" onclick="showSection('about')">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        About Us
-      </button>
-      <button class="btn" id="btn-contact" onclick="showSection('contact')">
-        <svg viewBox="0 0 24 24">
-  <circle cx="12" cy="12" r="10"/>
-  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-  <path d="M2 12h20"/>
-</svg>
-        Email
-      </button>
-      <button class="btn" id="btn-donate" onclick="showSection('donate')">
-        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M15 9.354a4 4 0 1 0 0 5.292"/></svg>
-        Donate
-      </button>
-    </div>
+<!-- BANNER — always on top -->
+<div class="hero-banner">
+  <div class="hero-text">
+    <h1>Sponsor Dignity</h1>
+    <p>
+      Support an elderly person directly<br>
+      Restore dignity through human connection
+    </p>
   </div>
+
+  <div class="hero-buttons">
+
+    <!-- Sponsor Someone -->
+    <button class="btn" id="btn-sponsor" onclick="showSection('sponsor')">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Sponsor Someone
+    </button>
+
+    <!-- About Us (World / Globe) -->
+    <button class="btn" id="btn-about" onclick="showSection('about')">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+        <path d="M2 12h20"/>
+      </svg>
+      About Us
+    </button>
+
+    <!-- Email -->
+    <button class="btn" id="btn-contact" onclick="showSection('contact')">
+      <svg viewBox="0 0 24 24">
+        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+      </svg>
+      Email
+    </button>
+
+    <!-- Donate (Wallet Cards) -->
+    <button class="btn" id="btn-donate" onclick="showSection('donate')">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
+        <path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/>
+      </svg>
+      Donate
+    </button>
+
+  </div>
+</div>
 
 </div>
 </div>
