@@ -1,1 +1,108 @@
+/* HERO FULL WIDTH */
+.hero {
+  position: relative;
+  height: 80vh;
+  min-height: 500px;
+  width: 100%;
+  overflow: hidden;
+}
 
+/* IMAGE */
+.hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* DARK FADE OVERLAY */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.75)
+  );
+}
+
+/* CONTENT */
+.hero-content {
+  position: absolute;
+  bottom: 60px;
+  left: 8%;
+  max-width: 650px;
+  color: white;
+}
+
+/* TITLE */
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  line-height: 1.1;
+}
+
+/* SUBTEXT */
+.hero-content p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+}
+
+/* BUTTONS */
+.hero-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* BASE BUTTON */
+.btn {
+  border-radius: 999px;
+  padding: .8rem 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s ease;
+  font-size: .95rem;
+}
+
+/* PRIMARY CTA */
+.btn.primary {
+  background: var(--teal);
+  color: white;
+  border: none;
+}
+
+.btn.primary:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+}
+
+/* GHOST BUTTONS */
+.btn.ghost {
+  background: rgba(255,255,255,.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,.3);
+}
+
+.btn.ghost:hover {
+  background: rgba(255,255,255,.25);
+}
+
+/* MOBILE */
+@media(max-width:700px){
+  .hero-content {
+    left: 5%;
+    right: 5%;
+    bottom: 40px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
