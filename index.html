@@ -21,7 +21,7 @@ html, body {
   background:#f4f7f5;
   color:var(--text);
 }
-/* OUTER WRAPPER — restores contained card layout */
+
 .hero-shell {
   max-width:1200px;
   margin:3rem auto 2.5rem;
@@ -30,12 +30,12 @@ html, body {
   box-shadow:0 22px 55px rgba(0,0,0,0.18);
   background:#000;
 }
-/* ── 1. HERO fills viewport edge to edge ── */
+
 .hero-wrapper {
   width:100%;
-  height:80vh;        
-  min-height:680px;   
-  max-height:900px;   
+  height:80vh;
+  min-height:680px;
+  max-height:900px;
   position:relative;
   overflow:hidden;
 }
@@ -48,7 +48,6 @@ html, body {
   display:block;
 }
 
-/* ── 2. Stronger base overlay + even stronger when open ── */
 .hero-overlay {
   position:absolute;
   inset:0;
@@ -70,7 +69,6 @@ html, body {
   );
 }
 
-/* ── BANNER ── */
 .hero-banner {
   position:absolute;
   bottom:0; left:0; right:0;
@@ -82,12 +80,12 @@ html, body {
   gap:2rem;
   flex-wrap:wrap;
   background:linear-gradient(to top, rgba(22,90,68,0.82) 0%, transparent 100%);
-  pointer-events:none; 
+  pointer-events:none;
 }
+
 .hero-buttons,
 .hero-text { pointer-events:auto; }
 
-/* ── 5. Bolder, whiter title ── */
 .hero-text h1 {
   font-family:'Zilla Slab',serif;
   font-weight:600;
@@ -108,13 +106,6 @@ html, body {
   text-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
 
-/* BUTTONS */
-.form-actions {
-  display:flex;
-  justify-content:flex-end;
-  margin-top:.4rem;
-}
-  
 .hero-buttons {
   display:flex;
   gap:.75rem;
@@ -160,7 +151,6 @@ html, body {
   flex-shrink:0;
 }
 
-/* CLOSE BUTTON */
 .close-btn {
   position:absolute;
   top:1.4rem; right:1.8rem;
@@ -183,7 +173,6 @@ html, body {
 .close-btn:hover { background:rgba(255,255,255,0.28); }
 .close-btn.visible { display:block; }
 
-/* ── 4. SECTION OVERLAYS — white scrollbar track, no gradient bg ── */
 .section-overlay {
   position:absolute;
   inset:0;
@@ -191,7 +180,6 @@ html, body {
   display:none;
   align-items:flex-start;
   justify-content:center;
-  /* top padding leaves room, bottom padding clears banner */
   padding:3.2rem 3.5rem 9rem;
   overflow-y:auto;
   scrollbar-color: rgba(255,255,255,0.4) rgba(255,255,255,0.12);
@@ -201,7 +189,6 @@ html, body {
 .section-overlay::-webkit-scrollbar { width:6px; }
 .section-overlay::-webkit-scrollbar-track { background:rgba(255,255,255,0.12); border-radius:3px; }
 .section-overlay::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.4); border-radius:3px; }
-
 .section-overlay.active { display:flex; }
 
 .section-content {
@@ -225,7 +212,6 @@ html, body {
   margin-bottom:.9rem;
 }
 
-/* ── 2. Whiter, more readable headings & body ── */
 .section-content h2 {
   font-family:'Playfair Display',serif;
   font-size:clamp(1.8rem, 3.5vw, 2.6rem);
@@ -243,8 +229,7 @@ html, body {
   text-shadow:0 1px 8px rgba(0,0,0,0.4);
 }
 
-.section-content > .section-fields p,
-.section-content > p {
+.section-content p {
   font-size:1rem;
   line-height:1.82;
   color:rgba(255,255,255,0.95);
@@ -252,7 +237,6 @@ html, body {
   text-shadow:0 1px 6px rgba(0,0,0,0.4);
 }
 
-/* ── 3. Cards/inputs — blurred glass ── */
 .tier-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -277,7 +261,6 @@ html, body {
   border-color:rgba(255,255,255,0.7);
 }
 
-/* ── 7. Bold selected border ── */
 .tier-card.selected {
   background:rgba(255,255,255,0.18);
   border:2.5px solid #ffffff;
@@ -315,7 +298,6 @@ html, body {
   display:block;
 }
 
-/* FORMS */
 .form-group { margin-bottom:1rem; }
 
 .form-group label {
@@ -334,7 +316,6 @@ html, body {
   padding:.65rem 1rem;
   border:1.5px solid rgba(255,255,255,0.3);
   border-radius:8px;
-  /* ── 3. blurred glass inputs ── */
   background:rgba(0,0,0,0.28);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
@@ -355,8 +336,14 @@ html, body {
 }
 
 .form-group textarea { min-height:95px; resize:vertical; }
-
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+
+/* Right-aligned submit button wrapper */
+.form-actions {
+  display:flex;
+  justify-content:flex-end;
+  margin-top:.5rem;
+}
 
 .submit-btn {
   display:inline-flex;
@@ -371,7 +358,6 @@ html, body {
   font-size:.95rem;
   font-weight:700;
   cursor:pointer;
-  margin-top:.4rem;
   transition:background .2s, transform .15s;
 }
 
@@ -385,7 +371,6 @@ html, body {
   stroke-linejoin:round;
 }
 
-/* DONATE PILLS */
 .amount-pills { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.2rem; }
 
 .pill {
@@ -407,20 +392,17 @@ html, body {
   border-color:rgba(255,255,255,0.75);
 }
 
-/* ── 7. Bold selected border on pills too ── */
 .pill.selected {
   background:rgba(255,255,255,0.18);
   border:2.5px solid #ffffff;
   box-shadow:0 0 0 3px rgba(255,255,255,0.2);
 }
 
-/* ── 6. SUCCESS replaces entire form content ── */
-.section-fields { }
 .section-fields.hidden { display:none; }
 
 .success-box {
   display:none;
-  padding:2.5rem 2rem;
+  padding:3rem 2rem;
   text-align:center;
   animation:fadeUp 0.4s ease both;
 }
@@ -487,17 +469,14 @@ html, body {
       <h2>Peer-to-Peer Assistance</h2>
       <p>Sponsor Dignity is a human-centered nonprofit connecting elderly individuals in need with compassionate donors who want to give back in a meaningful way. Through trusted local volunteer networks, we enable direct, transparent support—ensuring help reaches those who need it most. By combining sponsorship with human connection, we provide warmth, dignity, and essential care to those too often left behind by broken systems.</p>
       <h3>How we came about</h3>
-      <p>While visiting abroad, our founder saw an elderly man quietly going through the trash at night. He did not appear homeless... neatly dressed, careful not to be seen.
-In that moment, a deeper truth became clear. Many elderly people have worked hard their entire lives, only to face hardship and isolation in later years. Too proud to ask for help, they suffer in silence.
-Sponsor Dignity was created to connect those who can give with those in need, restoring dignity for one, and a sense of purpose and connection for the other.
-One story. One elder. One human connection at a time.</p>
+      <p>While visiting abroad, our founder saw an elderly man quietly going through the trash at night. He did not appear homeless... neatly dressed, careful not to be seen. In that moment, a deeper truth became clear. Many elderly people have worked hard their entire lives, only to face hardship and isolation in later years. Too proud to ask for help, they suffer in silence. Sponsor Dignity was created to connect those who can give with those in need, restoring dignity for one, and a sense of purpose and connection for the other. One story. One elder. One human connection at a time.</p>
     </div>
   </div>
 
   <!-- SPONSOR -->
-  <div class="form-actions">
   <div class="section-overlay" id="sponsor">
     <div class="section-content">
+
       <div id="sponsor-fields" class="section-fields">
         <div class="section-tag">Become a sponsor</div>
         <h2>Choose your level of support</h2>
@@ -536,23 +515,27 @@ One story. One elder. One human connection at a time.</p>
           <label>Any preferences? (optional)</label>
           <textarea id="s-notes" placeholder="e.g. I'd love to be matched with someone who enjoys gardening..."></textarea>
         </div>
-        <button class="submit-btn" onclick="submitForm('s-name','s-email','sponsor-fields','sponsor-success')">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          Start My Sponsorship
-        </button>
-      </div>  </div>
+        <div class="form-actions">
+          <button class="submit-btn" onclick="submitForm('s-name','s-email','sponsor-fields','sponsor-success')">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Start My Sponsorship
+          </button>
+        </div>
+      </div>
+
       <div class="success-box" id="sponsor-success">
         <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h3>You're making a difference!</h3>
         <p>Thank you for signing up. We'll be in touch within 5 days to introduce you to your match.</p>
       </div>
+
     </div>
   </div>
 
   <!-- CONTACT -->
-    <div class="form-actions">
   <div class="section-overlay" id="contact">
     <div class="section-content">
+
       <div id="contact-fields" class="section-fields">
         <div class="section-tag">Get in touch</div>
         <h2>We'd love to hear from you</h2>
@@ -571,23 +554,27 @@ One story. One elder. One human connection at a time.</p>
           <label>Message</label>
           <textarea id="c-msg" placeholder="What's on your mind?"></textarea>
         </div>
-        <button class="submit-btn" onclick="submitForm('c-name','c-email','contact-fields','contact-success')">
-          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Send Message
-        </button>
-      </div>  </div>
+        <div class="form-actions">
+          <button class="submit-btn" onclick="submitForm('c-name','c-email','contact-fields','contact-success')">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </div>
+      </div>
+
       <div class="success-box" id="contact-success">
         <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h3>Message sent!</h3>
         <p>Thank you for reaching out. We'll reply to you within 48 hours.</p>
       </div>
+
     </div>
   </div>
 
   <!-- DONATE -->
-      <div class="form-actions">
   <div class="section-overlay" id="donate">
     <div class="section-content">
+
       <div id="donate-fields" class="section-fields">
         <div class="section-tag">Make a donation</div>
         <h2>Every dollar goes directly to a person in need</h2>
@@ -612,87 +599,58 @@ One story. One elder. One human connection at a time.</p>
             <input type="email" id="d-email" placeholder="jane@example.com">
           </div>
         </div>
-        <button class="submit-btn" onclick="submitForm('d-name','d-email','donate-fields','donate-success')">
-          <svg viewBox="0 0 24 24">
-  <rect x="3" y="3" width="18" height="18" rx="2"/>
-  <path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
-  <path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/>
-</svg>
-          Donate Now
-        </button>
-      </div> </div>
+        <div class="form-actions">
+          <button class="submit-btn" onclick="submitForm('d-name','d-email','donate-fields','donate-success')">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/></svg>
+            Donate Now
+          </button>
+        </div>
+      </div>
+
       <div class="success-box" id="donate-success">
         <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h3>Thank you for your generosity!</h3>
         <p>Your donation will make a real and immediate difference. A receipt will be sent to your email.</p>
       </div>
+
     </div>
   </div>
 
-<!-- BANNER — always on top -->
-<div class="hero-banner">
-  <div class="hero-text">
-    <h1>Sponsor Dignity</h1>
-    <p>
-      Support an elderly person directly<br>
-      Restore dignity through human connection
-    </p>
+  <!-- BANNER — always on top -->
+  <div class="hero-banner">
+    <div class="hero-text">
+      <h1>Sponsor Dignity</h1>
+      <p>Support an elderly person directly<br>Restore dignity through human connection</p>
+    </div>
+    <div class="hero-buttons">
+      <button class="btn" id="btn-sponsor" onclick="showSection('sponsor')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Sponsor Someone
+      </button>
+      <button class="btn" id="btn-about" onclick="showSection('about')">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        About Us
+      </button>
+      <button class="btn" id="btn-contact" onclick="showSection('contact')">
+        <svg viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        Email
+      </button>
+      <button class="btn" id="btn-donate" onclick="showSection('donate')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/></svg>
+        Donate
+      </button>
+    </div>
   </div>
 
-  <div class="hero-buttons">
-
-    <!-- Sponsor Someone -->
-    <button class="btn" id="btn-sponsor" onclick="showSection('sponsor')">
-      <svg viewBox="0 0 24 24">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
-      Sponsor Someone
-    </button>
-
-    <!-- About Us (World / Globe) -->
-    <button class="btn" id="btn-about" onclick="showSection('about')">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-        <path d="M2 12h20"/>
-      </svg>
-      About Us
-    </button>
-
-    <!-- Email -->
-    <button class="btn" id="btn-contact" onclick="showSection('contact')">
-      <svg viewBox="0 0 24 24">
-        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
-        <rect x="2" y="4" width="20" height="16" rx="2"/>
-      </svg>
-      Email
-    </button>
-
-    <!-- Donate (Wallet Cards) -->
-    <button class="btn" id="btn-donate" onclick="showSection('donate')">
-      <svg viewBox="0 0 24 24">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
-        <path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/>
-      </svg>
-      Donate
-    </button>
-
-  </div>
-</div>
-
 </div>
 </div>
+
 <script>
 function showSection(id) {
   document.querySelectorAll('.section-overlay').forEach(function(s){ s.classList.remove('active'); });
   document.querySelectorAll('.btn').forEach(function(b){ b.classList.remove('active-btn'); });
-
-  // Reset all forms and success messages
   document.querySelectorAll('.section-fields').forEach(function(f){ f.classList.remove('hidden'); });
   document.querySelectorAll('.success-box').forEach(function(b){ b.classList.remove('show'); });
-
   var el = document.getElementById(id);
   if (el) {
     el.classList.add('active');
@@ -708,8 +666,6 @@ function closeSection() {
   document.querySelectorAll('.btn').forEach(function(b){ b.classList.remove('active-btn'); });
   document.getElementById('heroWrapper').classList.remove('section-open');
   document.getElementById('closeBtn').classList.remove('visible');
-
-  // Reset all forms and success messages on close too
   document.querySelectorAll('.section-fields').forEach(function(f){ f.classList.remove('hidden'); });
   document.querySelectorAll('.success-box').forEach(function(b){ b.classList.remove('show'); });
 }
