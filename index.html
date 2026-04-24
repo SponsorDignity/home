@@ -21,15 +21,24 @@ html, body {
   background:#f4f7f5;
   color:var(--text);
 }
-
+/* OUTER WRAPPER — restores contained card layout */
+.hero-shell {
+  max-width:1200px;
+  margin:3rem auto 2.5rem;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 22px 55px rgba(0,0,0,0.18);
+  background:#000;
+}
 /* ── 1. HERO fills viewport edge to edge ── */
 .hero-wrapper {
   width:100%;
-  height:100vh;
-  min-height:600px;
+  height:72vh;
+  min-height:620px;
+  max-height:860px;
   position:relative;
   overflow:hidden;
-  /* no border-radius, no max-width — full bleed */
+  /* contained, not full screen */
 }
 
 .hero-img {
@@ -456,7 +465,7 @@ html, body {
 </style>
 </head>
 <body>
-
+<div class="hero-shell">
 <div class="hero-wrapper" id="heroWrapper">
 
   <img src="images/dignity.jpg" class="hero-img" alt="Two elderly people sitting together outdoors">
@@ -630,7 +639,7 @@ html, body {
   </div>
 
 </div>
-
+</div>
 <script>
 function showSection(id) {
   document.querySelectorAll('.section-overlay').forEach(function(s){ s.classList.remove('active'); });
