@@ -790,9 +790,9 @@ function submitForm(nameId, emailId, fieldsId, successId) {
       var message = document.getElementById(messageId)?.value || '';
       if (!name || !email) return;
       emailjs.send("service_1ycg29q", "template_vjkkbb9", {
-        form_type: formType,
-        from_name: name,
-        from_email: email,
+        type: formType,
+        name: name,
+        email: email,
         message: message
       }).catch(function(err){ console.error("EmailJS error:", err); });
     } catch(e) {
