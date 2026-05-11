@@ -790,7 +790,7 @@ function submitForm(nameId, emailId, fieldsId, successId) {
       var message = document.getElementById(messageId)?.value || '';
       if (!name || !email) return;
       emailjs.send("service_1ycg29q", "template_vjkkbb9", {
-        type: formType,
+        title: formType,
         name: name,
         email: email,
         message: message
