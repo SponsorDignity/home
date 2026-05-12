@@ -780,14 +780,16 @@ function submitForm(nameId, emailId, fieldsId, successId) {
 
 <!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
- (function(){
-  emailjs.init("9GIvnoUR9C4HzZ8b1");
-})();
+<script>
+  (function(){
+    emailjs.init("9GIvnoUR9C4HzZ8b1");
+  })();
+
   function sendEmailSafely(formType, nameId, emailId, messageId) {
     try {
-      var name = document.getElementById(nameId)?.value || '';
-      var email = document.getElementById(emailId)?.value || '';
-      var message = document.getElementById(messageId)?.value || '';
+      var name = document.getElementById(nameId) ? document.getElementById(nameId).value : '';
+      var email = document.getElementById(emailId) ? document.getElementById(emailId).value : '';
+      var message = messageId && document.getElementById(messageId) ? document.getElementById(messageId).value : '';
       if (!name || !email) return;
       emailjs.send("service_1ycg29q", "template_vjkkbb9", {
         title: formType,
