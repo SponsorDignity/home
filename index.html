@@ -650,9 +650,17 @@ html, body {
             <input type="text" id="s-name" placeholder="Jane Smith">
           </div>
           <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="s-email" placeholder="jane@example.com">
-          </div>
+  <label>Email</label>
+  <div class="verify-row">
+    <input type="email" id="s-email" placeholder="jane@example.com" style="flex:1;">
+    <button type="button" class="send-code-btn" id="send-code-sponsor" onclick="sendCode('s-email','sponsor')">Send Code</button>
+  </div>
+  <div class="otp-row" id="otp-row-sponsor">
+    <input type="text" class="otp-input form-group input" id="otp-input-sponsor" placeholder="000000" maxlength="6">
+    <button type="button" class="verify-btn" id="verify-btn-sponsor" onclick="verifyCode('sponsor','sponsor-submit')">Verify</button>
+  </div>
+  <div class="verify-status" id="verify-status-sponsor"></div>
+</div>
         </div>
         <div class="form-actions">
           <button class="submit-btn" onclick="
@@ -686,17 +694,25 @@ html, body {
             <label>Your name</label>
             <input type="text" id="c-name" placeholder="Jane Smith">
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="c-email" placeholder="jane@example.com">
-          </div>
+<div class="form-group">
+  <label>Email</label>
+  <div class="verify-row">
+    <input type="email" id="c-email" placeholder="jane@example.com" style="flex:1;">
+    <button type="button" class="send-code-btn" id="send-code-contact" onclick="sendCode('c-email','contact')">Send Code</button>
+  </div>
+  <div class="otp-row" id="otp-row-contact">
+    <input type="text" class="otp-input form-group input" id="otp-input-contact" placeholder="000000" maxlength="6">
+    <button type="button" class="verify-btn" id="verify-btn-contact" onclick="verifyCode('contact','contact-submit')">Verify</button>
+  </div>
+  <div class="verify-status" id="verify-status-contact"></div>
+</div>
         </div>
         <div class="form-group">
           <label>Message</label>
           <textarea id="c-msg" placeholder="What's on your mind?"></textarea>
         </div>
         <div class="form-actions">
-          <button class="submit-btn" onclick="
+          <button class="submit-btn" id="sponsor-submit" disabled style="opacity:0.45" onclick="
   submitForm('c-name','c-email','contact-fields','contact-success');
   sendEmailSafely('Contact','c-name','c-email','c-msg');
 ">
@@ -729,13 +745,21 @@ html, body {
             <label>Your name</label>
             <input type="text" id="d-name" placeholder="Jane Smith">
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="d-email" placeholder="jane@example.com">
-          </div>
+<div class="form-group">
+  <label>Email</label>
+  <div class="verify-row">
+    <input type="email" id="d-email" placeholder="jane@example.com" style="flex:1;">
+    <button type="button" class="send-code-btn" id="send-code-donate" onclick="sendCode('d-email','donate')">Send Code</button>
+  </div>
+  <div class="otp-row" id="otp-row-donate">
+    <input type="text" class="otp-input form-group input" id="otp-input-donate" placeholder="000000" maxlength="6">
+    <button type="button" class="verify-btn" id="verify-btn-donate" onclick="verifyCode('donate','donate-submit')">Verify</button>
+  </div>
+  <div class="verify-status" id="verify-status-donate"></div>
+</div>
         </div>
         <div class="form-actions">
-          <button class="submit-btn" onclick="
+          <button class="submit-btn" id="sponsor-submit" disabled style="opacity:0.45" onclick="
   submitForm('d-name','d-email','donate-fields','donate-success');
   var amt = document.getElementById('custom-amt').value || 'not specified';
   sendEmailSafely('Donate','d-name','d-email', amt);
