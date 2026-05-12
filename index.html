@@ -593,7 +593,9 @@ html, body {
         <div class="form-actions">
           <button class="submit-btn" onclick="
   submitForm('s-name','s-email','sponsor-fields','sponsor-success');
-  sendEmailSafely('Sponsor','s-name','s-email','');
+  var selected = document.querySelector('.tier-card.selected');
+  var tier = selected ? (selected.querySelector('.tier-name').innerText + ' - ' + selected.querySelector('.amount').innerText + selected.querySelector('.tier-freq').innerText) : '';
+  sendEmailSafely('Sponsor','s-name','s-email', tier);
 ">
             <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             Start My Sponsorship
@@ -671,7 +673,8 @@ html, body {
         <div class="form-actions">
           <button class="submit-btn" onclick="
   submitForm('d-name','d-email','donate-fields','donate-success');
-  sendEmailSafely('Donate','d-name','d-email','');
+  var amt = document.getElementById('custom-amt').value || 'not specified';
+  sendEmailSafely('Donate','d-name','d-email', amt);
 ">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/></svg>
             Donate Now
@@ -785,22 +788,23 @@ function submitForm(nameId, emailId, fieldsId, successId) {
     emailjs.init("9GIvnoUR9C4HzZ8b1");
   })();
 
-  function sendEmailSafely(formType, nameId, emailId, messageId) {
-    try {
-      var name = document.getElementById(nameId) ? document.getElementById(nameId).value : '';
-      var email = document.getElementById(emailId) ? document.getElementById(emailId).value : '';
-      var message = messageId && document.getElementById(messageId) ? document.getElementById(messageId).value : '';
-      if (!name || !email) return;
-      emailjs.send("service_1ycg29q", "template_vjkkbb9", {
-        title: formType,
-        name: name,
-        email: email,
-        message: message
-      }).catch(function(err){ console.error("EmailJS error:", err); });
-    } catch(e) {
-      console.error("EmailJS exception:", e);
-    }
+function sendEmailSafely(formType, nameId, emailId, messageValue) {
+  try {
+    var name = document.getElementById(nameId) ? document.getElementById(nameId).value : '';
+    var email = document.getElementById(emailId) ? document.getElementById(emailId).value : '';
+    // messageValue is now passed directly as a string, not an element ID
+    var message = messageValue || '';
+    if (!name || !email) return;
+    emailjs.send("service_1ycg29q", "template_vjkkbb9", {
+      title: formType,
+      name: name,
+      email: email,
+      message: message
+    }).catch(function(err){ console.error("EmailJS error:", err); });
+  } catch(e) {
+    console.error("EmailJS exception:", e);
   }
+}
 </script>
 
 <script>
