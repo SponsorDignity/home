@@ -6,6 +6,70 @@
 <title>Sponsor Dignity</title>
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+  /* OTP verification UI */
+.verify-row {
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin-top:.3rem;
+  flex-wrap:wrap;
+}
+
+.send-code-btn {
+  padding:.5rem 1rem;
+  border:1.5px solid rgba(255,255,255,0.5);
+  border-radius:999px;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:.82rem;
+  font-weight:600;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background .2s;
+}
+
+.send-code-btn:hover { background:rgba(255,255,255,0.22); }
+.send-code-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+.otp-row {
+  display:none;
+  align-items:center;
+  gap:.6rem;
+  margin-top:.6rem;
+  flex-wrap:wrap;
+}
+
+.otp-input {
+  width:120px !important;
+  letter-spacing:.2em;
+  font-size:1.1rem !important;
+  text-align:center;
+}
+
+.verify-btn {
+  padding:.5rem 1rem;
+  border:1.5px solid rgba(255,255,255,0.5);
+  border-radius:999px;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:.82rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:background .2s;
+  white-space:nowrap;
+}
+
+.verify-btn:hover { background:rgba(255,255,255,0.22); }
+.verify-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+.verify-status {
+  font-size:.8rem;
+  margin-top:.4rem;
+  min-height:1.2em;
+  color:rgba(255,255,255,0.75);
+}
 * { box-sizing: border-box; margin:0; padding:0; }
 
 :root {
