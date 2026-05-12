@@ -720,26 +720,23 @@ html, body {
 
 <script>
 var isMobile = window.innerWidth <= 720;
+var otpStore = {}; // { formId: { code, email, expiry } }
 
 function showSection(id) {
   document.querySelectorAll('.section-overlay').forEach(function(s){ s.classList.remove('active'); });
   document.querySelectorAll('.btn').forEach(function(b){ b.classList.remove('active-btn'); });
   document.querySelectorAll('.section-fields').forEach(function(f){ f.classList.remove('hidden'); });
   document.querySelectorAll('.success-box').forEach(function(b){ b.classList.remove('show'); });
-
+  resetVerification();
   var el = document.getElementById(id);
   if (el) {
     el.classList.add('active');
-
-    // Desktop: darken overlay, show close button
     if (window.innerWidth > 720) {
       document.getElementById('heroWrapper').classList.add('section-open');
       document.getElementById('closeBtn').classList.add('visible');
     } else {
-      // Mobile: scroll the newly revealed section into view
       setTimeout(function(){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }, 50);
     }
-
     var btn = document.getElementById('btn-' + id);
     if (btn) btn.classList.add('active-btn');
   }
@@ -752,6 +749,16 @@ function closeSection() {
   document.getElementById('closeBtn').classList.remove('visible');
   document.querySelectorAll('.section-fields').forEach(function(f){ f.classList.remove('hidden'); });
   document.querySelectorAll('.success-box').forEach(function(b){ b.classList.remove('show'); });
+  resetVerification();
+}
+
+function resetVerification() {
+  otpStore = {};
+  document.querySelectorAll('.otp-row').forEach(function(r){ r.style.display='none'; });
+  document.querySelectorAll('.verify-status').forEach(function(s){ s.textContent=''; });
+  document.querySelectorAll('.otp-input').forEach(function(i){ i.value=''; });
+  document.querySelectorAll('.submit-btn').forEach(function(b){ b.disabled=true; b.style.opacity='0.45'; });
+  document.querySelectorAll('.send-code-btn').forEach(function(b){ b.disabled=false; b.textContent='Send Code'; });
 }
 
 function selectTier(card) {
@@ -759,14 +766,60 @@ function selectTier(card) {
   card.classList.add('selected');
 }
 
-function selectPill(pill) {
-  document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('selected'); });
-  pill.classList.add('selected');
-  document.getElementById('custom-amt').value = '';
+function generateCode() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-function clearPills() {
-  document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('selected'); });
+function sendCode(emailId, formId) {
+  var emailEl = document.getElementById(emailId);
+  if (!emailEl || !emailEl.value.trim()) { alert('Please enter your email first.'); return; }
+  var email = emailEl.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+
+  var btn = document.getElementById('send-code-' + formId);
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  var code = generateCode();
+  otpStore[formId] = { code: code, email: email, expiry: Date.now() + 10 * 60 * 1000 };
+
+  emailjs.send("service_1ycg29q", "template_verify", {
+    email: email,
+    code: code
+  }).then(function() {
+    btn.textContent = 'Resend Code';
+    btn.disabled = false;
+    document.getElementById('otp-row-' + formId).style.display = 'flex';
+    document.getElementById('verify-status-' + formId).textContent = 'Code sent! Check your inbox.';
+    document.getElementById('verify-status-' + formId).style.color = 'rgba(255,255,255,0.75)';
+  }).catch(function(err) {
+    btn.textContent = 'Send Code';
+    btn.disabled = false;
+    alert('Could not send code. Please try again.');
+    console.error(err);
+  });
+}
+
+function verifyCode(formId, submitBtnId) {
+  var input = document.getElementById('otp-input-' + formId);
+  var status = document.getElementById('verify-status-' + formId);
+  var entered = input ? input.value.trim() : '';
+  var stored = otpStore[formId];
+
+  if (!stored) { status.textContent = 'Please request a code first.'; status.style.color='#ffaaaa'; return; }
+  if (Date.now() > stored.expiry) { status.textContent = 'Code expired. Please request a new one.'; status.style.color='#ffaaaa'; otpStore[formId]=null; return; }
+  if (entered !== stored.code) { status.textContent = 'Incorrect code. Try again.'; status.style.color='#ffaaaa'; return; }
+
+  status.textContent = '✓ Email verified!';
+  status.style.color = '#a8f0d4';
+  input.disabled = true;
+  document.getElementById('send-code-' + formId).disabled = true;
+  document.querySelectorAll('#' + submitBtnId).forEach(function(b){
+    b.disabled = false;
+    b.style.opacity = '1';
+  });
+  document.getElementById('verify-btn-' + formId).disabled = true;
+  document.getElementById('verify-btn-' + formId).textContent = 'Verified ✓';
 }
 
 function submitForm(nameId, emailId, fieldsId, successId) {
