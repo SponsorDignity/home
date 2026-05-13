@@ -6,6 +6,17 @@
 <title>Sponsor Dignity</title>
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+  .form-error {
+  display:none;
+  font-size:.82rem;
+  color:#ffb3b3;
+  background:rgba(255,80,80,0.12);
+  border:1px solid rgba(255,100,100,0.3);
+  border-radius:8px;
+  padding:.6rem 1rem;
+  margin-top:.6rem;
+}
+.form-error.show { display:block; }
   /* OTP verification UI */
 .verify-row {
   display:flex;
@@ -662,6 +673,7 @@ html, body {
   <div class="verify-status" id="verify-status-sponsor"></div>
 </div>
         </div>
+        <div class="form-error" id="sponsor-error"></div>
         <div class="form-actions">
           <button class="submit-btn" id="sponsor-submit" disabled style="opacity:0.45" onclick="
   submitForm('s-name','s-email','sponsor-fields','sponsor-success');
@@ -711,6 +723,7 @@ html, body {
           <label>Message</label>
           <textarea id="c-msg" placeholder="What's on your mind?"></textarea>
         </div>
+        <div class="form-error" id="contact-error"></div>
         <div class="form-actions">
           <button class="submit-btn" id="contact-submit" disabled style="opacity:0.45" onclick="
   submitForm('c-name','c-email','contact-fields','contact-success');
@@ -759,6 +772,7 @@ html, body {
   <div class="verify-status" id="verify-status-donate"></div>
 </div>
         </div>
+        <div class="form-error" id="donate-error"></div>
         <div class="form-actions">
           <button class="submit-btn" id="donate-submit" disabled style="opacity:0.45" onclick="
   submitForm('d-name','d-email','donate-fields','donate-success');
