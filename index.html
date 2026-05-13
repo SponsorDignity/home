@@ -872,12 +872,19 @@ function selectTier(card) {
 function generateCode() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
+function showError(formId, msg) {
+  var el = document.getElementById(formId + '-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(function(){ el.classList.remove('show'); }, 5000);
+}
 
 function sendCode(emailId, formId) {
   var emailEl = document.getElementById(emailId);
-  if (!emailEl || !emailEl.value.trim()) { alert('Please enter your email first.'); return; }
+  if (!emailEl || !emailEl.value.trim()) { showError(formId, 'Please enter your email first.'); return; }
   var email = emailEl.value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError(formId, 'Please enter a valid email address.'); return; }
 
   var btn = document.getElementById('send-code-' + formId);
   btn.disabled = true;
@@ -898,7 +905,7 @@ function sendCode(emailId, formId) {
   }).catch(function(err) {
     btn.textContent = 'Send Code';
     btn.disabled = false;
-    alert('Could not send code. Please try again.');
+    showError(formId, 'Could not send code. Please try again.');
     console.error(err);
   });
 }
@@ -917,21 +924,20 @@ function verifyCode(formId, submitBtnId) {
   status.style.color = '#a8f0d4';
   input.disabled = true;
   document.getElementById('send-code-' + formId).disabled = true;
-  document.querySelectorAll('#' + submitBtnId).forEach(function(b){
-    b.disabled = false;
-    b.style.opacity = '1';
-  });
+  document.getElementById(submitBtnId).disabled = false;
+  document.getElementById(submitBtnId).style.opacity = '1';
   document.getElementById('verify-btn-' + formId).disabled = true;
   document.getElementById('verify-btn-' + formId).textContent = 'Verified ✓';
 }
 
 function submitForm(nameId, emailId, fieldsId, successId) {
+  var formId = fieldsId.replace('-fields', '');
   var nameEl = document.getElementById(nameId);
   var emailEl = document.getElementById(emailId);
-  if (!nameEl || !emailEl) { alert('Form error — fields not found.'); return; }
+  if (!nameEl || !emailEl) { showError(formId, 'Form error — fields not found.'); return; }
   var name = nameEl.value.trim();
   var email = emailEl.value.trim();
-  if (!name || !email) { alert('Please fill in your name and email.'); return; }
+  if (!name || !email) { showError(formId, 'Please fill in your name and email.'); return; }
   document.getElementById(fieldsId).classList.add('hidden');
   document.getElementById(successId).classList.add('show');
 }
