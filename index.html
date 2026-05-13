@@ -663,7 +663,7 @@ html, body {
 </div>
         </div>
         <div class="form-actions">
-          <button class="submit-btn" onclick="
+          <button class="submit-btn" id="sponsor-submit" disabled style="opacity:0.45" onclick="
   submitForm('s-name','s-email','sponsor-fields','sponsor-success');
   var selected = document.querySelector('.tier-card.selected');
   var tier = selected ? (selected.querySelector('.tier-name').innerText + ' - ' + selected.querySelector('.amount').innerText + selected.querySelector('.tier-freq').innerText) : '';
@@ -712,9 +712,10 @@ html, body {
           <textarea id="c-msg" placeholder="What's on your mind?"></textarea>
         </div>
         <div class="form-actions">
-          <button class="submit-btn" id="sponsor-submit" disabled style="opacity:0.45" onclick="
+          <button class="submit-btn" id="contact-submit" disabled style="opacity:0.45" onclick="
   submitForm('c-name','c-email','contact-fields','contact-success');
-  sendEmailSafely('Contact','c-name','c-email','c-msg');
+  var msg = document.getElementById('c-msg') ? document.getElementById('c-msg').value : '';
+  sendEmailSafely('Contact','c-name','c-email', msg);
 ">
             <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Send Message
@@ -759,7 +760,7 @@ html, body {
 </div>
         </div>
         <div class="form-actions">
-          <button class="submit-btn" id="sponsor-submit" disabled style="opacity:0.45" onclick="
+          <button class="submit-btn" id="donate-submit" disabled style="opacity:0.45" onclick="
   submitForm('d-name','d-email','donate-fields','donate-success');
   var amt = document.getElementById('custom-amt').value || 'not specified';
   sendEmailSafely('Donate','d-name','d-email', amt);
